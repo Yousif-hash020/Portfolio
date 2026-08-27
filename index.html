@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio // T-800</title>
-  <meta name="description" content="Terminator-themed portfolio hero section — yellow and black." />
+  <meta name="description" content="Terminator-themed portfolio hero section — terracotta and black." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap"
@@ -20,7 +20,8 @@
     }
 
     :root {
-      --yellow: #F5C400;
+      --accent: #D96C3F;
+      --paper: #E7E5DF;
       --black: #0A0A0A;
       --black2: #111111;
     }
@@ -29,7 +30,7 @@
     body {
       height: 100%;
       overflow: hidden;
-      background: var(--yellow);
+      background: var(--paper);
       font-family: 'Share Tech Mono', monospace;
       color: var(--black);
     }
@@ -41,7 +42,7 @@
       position: relative;
       width: 100vw;
       height: 100vh;
-      background: var(--yellow);
+      background: var(--paper);
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -110,7 +111,7 @@
       font-family: 'Orbitron', sans-serif;
       font-size: 0.62rem;
       letter-spacing: 2px;
-      color: rgba(245, 196, 0, 0.55);
+      color: rgba(217, 108, 63, 0.7);
       text-decoration: none;
       text-transform: uppercase;
       padding: 6px 14px;
@@ -119,8 +120,8 @@
     }
 
     .nav-links a:hover {
-      background: rgba(245, 196, 0, 0.12);
-      color: var(--yellow);
+      background: rgba(217, 108, 63, 0.12);
+      color: var(--accent);
     }
 
     /* ────────────────────────────────
@@ -251,14 +252,14 @@
       align-items: center;
       justify-content: center;
       border-radius: 9px;
-      color: rgba(245, 196, 0, 0.55);
+      color: rgba(217, 108, 63, 0.7);
       text-decoration: none;
       transition: background 0.25s, color 0.25s;
     }
 
     .social-link:hover {
-      background: rgba(245, 196, 0, 0.12);
-      color: var(--yellow);
+      background: rgba(217, 108, 63, 0.12);
+      color: var(--accent);
     }
 
     .social-link svg {
@@ -292,7 +293,7 @@
     .ticker-item {
       font-size: 0.6rem;
       letter-spacing: 4px;
-      color: var(--yellow);
+      color: var(--accent);
       opacity: 0.6;
       padding: 0 48px;
       text-transform: uppercase;
@@ -301,7 +302,7 @@
     .ticker-item span {
       opacity: 1;
       margin: 0 12px;
-      color: var(--yellow);
+      color: var(--accent);
     }
 
     @keyframes ticker {
@@ -337,9 +338,9 @@
     <!-- ── HERO CONTENT ── -->
     <div class="hero-content">
       <h1 class="hero-title">
-        I'LL<br />
-        <em>BE</em><br />
-        BACK.
+        MAKE<br />
+        <em>IT</em><br />
+        WORK.
       </h1>
       <div class="hero-desc">
         <div class="hero-desc-line"></div>
