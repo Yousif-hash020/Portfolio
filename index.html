@@ -86,6 +86,18 @@
       border-radius: 14px;
     }
 
+    nav::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 100%;
+      width: 100vw;
+      height: 100%;
+      background: var(--black);
+      clip-path: polygon(18px 0, 100% 0, 100% 100%, 0 100%);
+      pointer-events: none;
+    }
+
     .nav-links {
       display: flex;
       gap: 6px;
@@ -97,7 +109,7 @@
       font-family: 'Orbitron', sans-serif;
       font-size: 0.62rem;
       letter-spacing: 2px;
-      color: rgba(217, 108, 63, 0.7);
+      color: rgba(255, 250, 98, 0.75);
       text-decoration: none;
       text-transform: uppercase;
       padding: 6px 14px;
@@ -106,7 +118,7 @@
     }
 
     .nav-links a:hover {
-      background: rgba(217, 108, 63, 0.12);
+      background: rgba(255, 250, 98, 0.15);
       color: var(--accent);
     }
 
@@ -314,10 +326,10 @@
     <!-- ── NAV TOP LEFT ── -->
     <nav id="main-nav">
       <ul class="nav-links">
-        <li><a href="#about" id="nav-about">Mission</a></li>
-        <li><a href="#work" id="nav-work">Arsenal</a></li>
-        <li><a href="#skills" id="nav-skills">Protocol</a></li>
-        <li><a href="#contact" id="nav-contact">Contact</a></li>
+        <li><a href="about.html" id="nav-about">Mission</a></li>
+        <li><a href="about.html#arsenal" id="nav-work">Arsenal</a></li>
+        <li><a href="about.html#directives" id="nav-skills">Protocol</a></li>
+        <li><a href="about.html#terminal" id="nav-contact">Terminal</a></li>
       </ul>
     </nav>
 
