@@ -1,673 +1,1437 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mission Dossier — Web Dev &amp; AI Engineer</title>
-  <meta name="description" content="In-depth technical dossier for a Full-Stack Web Developer &amp; Generative AI Engineer — directives, arsenal, telemetry, and interactive diagnostic terminal." />
+  <meta name="description"
+    content="In-depth technical dossier for a Full-Stack Web Developer &amp; Generative AI Engineer — directives, arsenal, telemetry, and interactive diagnostic terminal." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
   <style>
     /* ===== DESIGN TOKENS (mirrors index.html) ===== */
     :root {
-      --c-black: #0C0C0C; --c-black2: #141414; --c-black3: #1A1A1A;
-      --c-border: #252525; --c-border2: #2E2E2E;
-      --c-yellow: #f5e41b; --c-yellow-dim: #d4c418; --c-yellow-bg: #f5e41b;
-      --c-white: #FFFFFF; --c-text-1: #F0F0F0; --c-text-2: #A3A3A3; --c-text-3: #6B6B6B;
-      --c-green: #22C55E; --c-on-yellow: #0C0C0C; --c-on-yellow-2: #3A3600;
+      --c-black: #0C0C0C;
+      --c-black2: #141414;
+      --c-black3: #1A1A1A;
+      --c-border: #252525;
+      --c-border2: #2E2E2E;
+      --c-yellow: #f5e41b;
+      --c-yellow-dim: #d4c418;
+      --c-yellow-bg: #f5e41b;
+      --c-white: #FFFFFF;
+      --c-text-1: #F0F0F0;
+      --c-text-2: #A3A3A3;
+      --c-text-3: #6B6B6B;
+      --c-green: #22C55E;
+      --c-on-yellow: #0C0C0C;
+      --c-on-yellow-2: #3A3600;
       --f-heading: 'Space Grotesk', system-ui, sans-serif;
-      --f-body:    'Inter', system-ui, sans-serif;
-      --f-mono:    'JetBrains Mono', monospace;
-      --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:32px; --sp-5:48px; --sp-6:64px; --sp-7:80px; --sp-9:120px;
-      --max-w: 1180px; --nav-h: 68px;
-      --r-sm:6px; --r-md:12px; --r-lg:20px; --r-xl:28px; --r-full:9999px;
-      --ease-out: cubic-bezier(0.16,1,0.3,1); --ease-io: cubic-bezier(0.4,0,0.2,1);
-      --t-fast:150ms; --t-med:250ms;
+      --f-body: 'Inter', system-ui, sans-serif;
+      --f-mono: 'JetBrains Mono', monospace;
+      --sp-1: 8px;
+      --sp-2: 16px;
+      --sp-3: 24px;
+      --sp-4: 32px;
+      --sp-5: 48px;
+      --sp-6: 64px;
+      --sp-7: 80px;
+      --sp-9: 120px;
+      --max-w: 1180px;
+      --nav-h: 68px;
+      --r-sm: 6px;
+      --r-md: 12px;
+      --r-lg: 20px;
+      --r-xl: 28px;
+      --r-full: 9999px;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-io: cubic-bezier(0.4, 0, 0.2, 1);
+      --t-fast: 150ms;
+      --t-med: 250ms;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--f-body); background: var(--c-black); color: var(--c-text-1); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    img { display: block; max-width: 100%; }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
-    button { cursor: pointer; font-family: inherit; }
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--c-black2); }
-    ::-webkit-scrollbar-thumb { background: var(--c-border2); border-radius: var(--r-full); }
-    ::-webkit-scrollbar-thumb:hover { background: var(--c-yellow); }
-    :focus-visible { outline: 2px solid var(--c-yellow); outline-offset: 3px; border-radius: var(--r-sm); }
-    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--sp-3); }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--f-body);
+      background: var(--c-black);
+      color: var(--c-text-1);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    button {
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--c-black2);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--c-border2);
+      border-radius: var(--r-full);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--c-yellow);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--c-yellow);
+      outline-offset: 3px;
+      border-radius: var(--r-sm);
+    }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--sp-3);
+    }
 
     /* ===== NAV (sticky HUD header) ===== */
     .hud-nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(12,12,12,.92); backdrop-filter: blur(20px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(12, 12, 12, .92);
+      backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--c-border);
       height: var(--nav-h);
     }
+
     .hud-nav__inner {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 var(--sp-3);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--sp-3);
     }
-    .hud-nav__left { display: flex; align-items: center; gap: var(--sp-3); }
+
+    .hud-nav__left {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+    }
+
     .back-btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: .8125rem; font-weight: 600; color: var(--c-text-2);
-      background: var(--c-black3); border: 1.5px solid var(--c-border);
-      padding: 8px 16px; border-radius: var(--r-md);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .8125rem;
+      font-weight: 600;
+      color: var(--c-text-2);
+      background: var(--c-black3);
+      border: 1.5px solid var(--c-border);
+      padding: 8px 16px;
+      border-radius: var(--r-md);
       transition: all var(--t-fast);
     }
-    .back-btn:hover { color: var(--c-yellow); border-color: rgba(245,228,27,.35); background: rgba(245,228,27,.05); }
-    .status-badge { display: flex; align-items: center; gap: 8px; font-family: var(--f-mono); font-size: .75rem; color: var(--c-text-3); }
-    .status-badge__dot { width: 7px; height: 7px; background: var(--c-green); border-radius: var(--r-full); animation: pulse-dot 2s infinite; }
-    @keyframes pulse-dot { 0%,100% { opacity:1; box-shadow:0 0 0 0 rgba(34,197,94,.5); } 50% { opacity:.8; box-shadow:0 0 0 5px rgba(34,197,94,0); } }
-    .status-badge__time { font-family: var(--f-mono); font-size: .75rem; color: var(--c-text-3); }
-    .hud-nav__pills { display: flex; gap: 4px; }
-    .hud-pill { font-family: var(--f-mono); font-size: .7rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; padding: 6px 12px; border-radius: var(--r-full); color: var(--c-text-2); border: 1px solid transparent; transition: all var(--t-fast); }
-    .hud-pill:hover { color: var(--c-white); background: var(--c-black3); border-color: var(--c-border); }
+
+    .back-btn:hover {
+      color: var(--c-yellow);
+      border-color: rgba(245, 228, 27, .35);
+      background: rgba(245, 228, 27, .05);
+    }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--f-mono);
+      font-size: .75rem;
+      color: var(--c-text-3);
+    }
+
+    .status-badge__dot {
+      width: 7px;
+      height: 7px;
+      background: var(--c-green);
+      border-radius: var(--r-full);
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, .5);
+      }
+
+      50% {
+        opacity: .8;
+        box-shadow: 0 0 0 5px rgba(34, 197, 94, 0);
+      }
+    }
+
+    .status-badge__time {
+      font-family: var(--f-mono);
+      font-size: .75rem;
+      color: var(--c-text-3);
+    }
+
+    .hud-nav__pills {
+      display: flex;
+      gap: 4px;
+    }
+
+    .hud-pill {
+      font-family: var(--f-mono);
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: var(--r-full);
+      color: var(--c-text-2);
+      border: 1px solid transparent;
+      transition: all var(--t-fast);
+    }
+
+    .hud-pill:hover {
+      color: var(--c-white);
+      background: var(--c-black3);
+      border-color: var(--c-border);
+    }
 
     /* ===== SECTION HELPERS ===== */
-    .section { padding: var(--sp-9) 0; }
-    .section--yellow { background: var(--c-yellow-bg); color: var(--c-on-yellow); }
-    .section--dark    { background: var(--c-black);  color: var(--c-text-1); }
-    .section--dark2   { background: var(--c-black2); color: var(--c-text-1); }
-    .section-label {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--f-mono); font-size: .75rem; font-weight: 500;
-      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: var(--sp-3);
+    .section {
+      padding: var(--sp-9) 0;
     }
-    .section-label::before { content:''; display:block; width:24px; height:2px; background:currentColor; border-radius:2px; }
-    .section--yellow .section-label { color: var(--c-on-yellow-2); }
-    .section--dark .section-label, .section--dark2 .section-label { color: var(--c-yellow); }
-    .section-title { font-family: var(--f-heading); font-weight: 700; font-size: clamp(2rem,4vw,3rem); letter-spacing: -1px; line-height: 1.1; margin-bottom: var(--sp-2); }
-    .section-subtitle { font-size: 1.0625rem; line-height: 1.65; max-width: 600px; }
-    .section--yellow .section-subtitle { color: var(--c-on-yellow-2); }
-    .section--dark .section-subtitle, .section--dark2 .section-subtitle { color: var(--c-text-2); }
+
+    .section--yellow {
+      background: var(--c-yellow-bg);
+      color: var(--c-on-yellow);
+    }
+
+    .section--dark {
+      background: var(--c-black);
+      color: var(--c-text-1);
+    }
+
+    .section--dark2 {
+      background: var(--c-black2);
+      color: var(--c-text-1);
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--f-mono);
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: var(--sp-3);
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+    }
+
+    .section--yellow .section-label {
+      color: var(--c-on-yellow-2);
+    }
+
+    .section--dark .section-label,
+    .section--dark2 .section-label {
+      color: var(--c-yellow);
+    }
+
+    .section-title {
+      font-family: var(--f-heading);
+      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: var(--sp-2);
+    }
+
+    .section-subtitle {
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      max-width: 600px;
+    }
+
+    .section--yellow .section-subtitle {
+      color: var(--c-on-yellow-2);
+    }
+
+    .section--dark .section-subtitle,
+    .section--dark2 .section-subtitle {
+      color: var(--c-text-2);
+    }
 
     /* ===== HERO DOSSIER — black ===== */
     .dossier-hero {
       padding: var(--sp-9) 0 var(--sp-7);
       background: var(--c-black);
-      position: relative; overflow: hidden;
+      position: relative;
+      overflow: hidden;
     }
+
     .dossier-hero::before {
-      content: ''; position: absolute; inset: 0;
+      content: '';
+      position: absolute;
+      inset: 0;
       background-image: linear-gradient(var(--c-border) 1px, transparent 1px), linear-gradient(90deg, var(--c-border) 1px, transparent 1px);
-      background-size: 60px 60px; opacity: .15; pointer-events: none;
+      background-size: 60px 60px;
+      opacity: .15;
+      pointer-events: none;
     }
-    .dossier-hero__inner { position: relative; z-index: 2; }
+
+    .dossier-hero__inner {
+      position: relative;
+      z-index: 2;
+    }
+
     .dossier-hero__tag {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--f-mono); font-size: .75rem; color: var(--c-yellow);
-      background: rgba(245,228,27,.08); border: 1px solid rgba(245,228,27,.2);
-      padding: 6px 14px; border-radius: var(--r-full); margin-bottom: var(--sp-4);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--f-mono);
+      font-size: .75rem;
+      color: var(--c-yellow);
+      background: rgba(245, 228, 27, .08);
+      border: 1px solid rgba(245, 228, 27, .2);
+      padding: 6px 14px;
+      border-radius: var(--r-full);
+      margin-bottom: var(--sp-4);
     }
+
     .dossier-hero__title {
-      font-family: var(--f-heading); font-weight: 700;
-      font-size: clamp(2.8rem,6vw,5rem); letter-spacing: -2px; line-height: 1.0;
-      margin-bottom: var(--sp-3); color: var(--c-text-1);
+      font-family: var(--f-heading);
+      font-weight: 700;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      letter-spacing: -2px;
+      line-height: 1.0;
+      margin-bottom: var(--sp-3);
+      color: var(--c-text-1);
     }
-    .dossier-hero__title .hl  { color: var(--c-yellow); }
-    .dossier-hero__title .ol  { -webkit-text-stroke: 2px var(--c-border2); color: transparent; }
+
+    .dossier-hero__title .hl {
+      color: var(--c-yellow);
+    }
+
+    .dossier-hero__title .ol {
+      -webkit-text-stroke: 2px var(--c-border2);
+      color: transparent;
+    }
+
     .dossier-hero__lead {
-      font-size: 1.0625rem; color: var(--c-text-2); line-height: 1.7;
-      max-width: 680px; margin-bottom: var(--sp-6);
+      font-size: 1.0625rem;
+      color: var(--c-text-2);
+      line-height: 1.7;
+      max-width: 680px;
+      margin-bottom: var(--sp-6);
     }
+
     .dossier-hero__meta {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
-      gap: var(--sp-2); padding-top: var(--sp-5); border-top: 1px solid var(--c-border);
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--sp-2);
+      padding-top: var(--sp-5);
+      border-top: 1px solid var(--c-border);
     }
-    .meta-item { display: flex; flex-direction: column; gap: 4px; }
-    .meta-label { font-family: var(--f-mono); font-size: .7rem; color: var(--c-yellow); letter-spacing: 1.5px; text-transform: uppercase; opacity: .85; }
-    .meta-val   { font-family: var(--f-heading); font-size: .95rem; font-weight: 600; color: var(--c-text-1); }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .meta-label {
+      font-family: var(--f-mono);
+      font-size: .7rem;
+      color: var(--c-yellow);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      opacity: .85;
+    }
+
+    .meta-val {
+      font-family: var(--f-heading);
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--c-text-1);
+    }
 
     /* ===== DIRECTIVES — yellow ===== */
-    #directives { padding: var(--sp-9) 0; }
-    .directives-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap: var(--sp-3); }
-    .directive-card {
-      background: var(--c-black); border: 1.5px solid rgba(12,12,12,.15);
-      border-radius: var(--r-xl); padding: var(--sp-4);
-      transition: transform var(--t-med) var(--ease-out), box-shadow var(--t-med);
-      display: flex; flex-direction: column;
+    #directives {
+      padding: var(--sp-9) 0;
     }
-    .directive-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.35); }
-    .directive-card__code { font-family: var(--f-mono); font-size: .7rem; letter-spacing: 2px; color: var(--c-yellow); text-transform: uppercase; margin-bottom: var(--sp-2); }
-    .directive-card__title { font-family: var(--f-heading); font-size: 1.125rem; font-weight: 700; color: var(--c-text-1); margin-bottom: var(--sp-2); }
-    .directive-card__text  { font-size: .875rem; color: var(--c-text-2); line-height: 1.65; margin-bottom: var(--sp-3); flex: 1; }
+
+    .directives-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: var(--sp-3);
+    }
+
+    .directive-card {
+      background: var(--c-black);
+      border: 1.5px solid rgba(12, 12, 12, .15);
+      border-radius: var(--r-xl);
+      padding: var(--sp-4);
+      transition: transform var(--t-med) var(--ease-out), box-shadow var(--t-med);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .directive-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+    }
+
+    .directive-card__code {
+      font-family: var(--f-mono);
+      font-size: .7rem;
+      letter-spacing: 2px;
+      color: var(--c-yellow);
+      text-transform: uppercase;
+      margin-bottom: var(--sp-2);
+    }
+
+    .directive-card__title {
+      font-family: var(--f-heading);
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--c-text-1);
+      margin-bottom: var(--sp-2);
+    }
+
+    .directive-card__text {
+      font-size: .875rem;
+      color: var(--c-text-2);
+      line-height: 1.65;
+      margin-bottom: var(--sp-3);
+      flex: 1;
+    }
+
     .directive-card__highlight {
-      display: flex; align-items: center; gap: 8px;
-      font-family: var(--f-mono); font-size: .72rem; letter-spacing: 1px; text-transform: uppercase;
-      color: var(--c-yellow); background: rgba(245,228,27,.08);
-      padding: 6px 12px; border-radius: var(--r-sm); border-left: 3px solid var(--c-yellow);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--f-mono);
+      font-size: .72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--c-yellow);
+      background: rgba(245, 228, 27, .08);
+      padding: 6px 12px;
+      border-radius: var(--r-sm);
+      border-left: 3px solid var(--c-yellow);
     }
 
     /* ===== ARSENAL — dark ===== */
-    #arsenal { padding: var(--sp-9) 0; }
-    .arsenal-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: var(--sp-5); flex-wrap: wrap; gap: var(--sp-3); }
-    .arsenal-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    #arsenal {
+      padding: var(--sp-9) 0;
+    }
+
+    .arsenal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: var(--sp-5);
+      flex-wrap: wrap;
+      gap: var(--sp-3);
+    }
+
+    .arsenal-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
     .arsenal-tab {
-      font-size: .8125rem; font-weight: 500; padding: 7px 16px;
-      border-radius: var(--r-full); background: var(--c-black3);
-      border: 1.5px solid var(--c-border); color: var(--c-text-2);
+      font-size: .8125rem;
+      font-weight: 500;
+      padding: 7px 16px;
+      border-radius: var(--r-full);
+      background: var(--c-black3);
+      border: 1.5px solid var(--c-border);
+      color: var(--c-text-2);
       transition: all var(--t-fast);
     }
-    .arsenal-tab:hover { border-color: var(--c-border2); color: var(--c-text-1); }
-    .arsenal-tab.active { background: var(--c-yellow); color: var(--c-on-yellow); border-color: var(--c-yellow); }
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: var(--sp-2); }
+
+    .arsenal-tab:hover {
+      border-color: var(--c-border2);
+      color: var(--c-text-1);
+    }
+
+    .arsenal-tab.active {
+      background: var(--c-yellow);
+      color: var(--c-on-yellow);
+      border-color: var(--c-yellow);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--sp-2);
+    }
+
     .skill-card {
-      background: var(--c-black3); border: 1.5px solid var(--c-border);
-      border-radius: var(--r-lg); padding: var(--sp-3);
+      background: var(--c-black3);
+      border: 1.5px solid var(--c-border);
+      border-radius: var(--r-lg);
+      padding: var(--sp-3);
       transition: border-color var(--t-med), transform var(--t-med) var(--ease-out);
     }
-    .skill-card:hover { border-color: var(--c-border2); transform: translateY(-2px); }
-    .skill-card.hidden { display: none; }
-    .skill-card__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--sp-2); }
-    .skill-card__icon { width: 36px; height: 36px; border-radius: var(--r-sm); background: var(--c-black2); border: 1px solid var(--c-border); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
-    .skill-card__pct { font-family: var(--f-mono); font-size: .875rem; font-weight: 500; color: var(--c-yellow); }
-    .skill-card__name { font-family: var(--f-heading); font-size: .9375rem; font-weight: 600; color: var(--c-text-1); margin-bottom: var(--sp-2); }
-    .skill-bar { height: 4px; background: var(--c-border); border-radius: var(--r-full); overflow: hidden; margin-bottom: 8px; }
-    .skill-bar__fill { height: 100%; background: linear-gradient(90deg, var(--c-yellow-dim), var(--c-yellow)); border-radius: var(--r-full); width: 0%; transition: width 1.2s var(--ease-out); }
-    .skill-card__sub { font-size: .725rem; color: var(--c-text-3); font-family: var(--f-mono); }
+
+    .skill-card:hover {
+      border-color: var(--c-border2);
+      transform: translateY(-2px);
+    }
+
+    .skill-card.hidden {
+      display: none;
+    }
+
+    .skill-card__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--sp-2);
+    }
+
+    .skill-card__icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--r-sm);
+      background: var(--c-black2);
+      border: 1px solid var(--c-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .skill-card__pct {
+      font-family: var(--f-mono);
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--c-yellow);
+    }
+
+    .skill-card__name {
+      font-family: var(--f-heading);
+      font-size: .9375rem;
+      font-weight: 600;
+      color: var(--c-text-1);
+      margin-bottom: var(--sp-2);
+    }
+
+    .skill-bar {
+      height: 4px;
+      background: var(--c-border);
+      border-radius: var(--r-full);
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .skill-bar__fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--c-yellow-dim), var(--c-yellow));
+      border-radius: var(--r-full);
+      width: 0%;
+      transition: width 1.2s var(--ease-out);
+    }
+
+    .skill-card__sub {
+      font-size: .725rem;
+      color: var(--c-text-3);
+      font-family: var(--f-mono);
+    }
 
     /* ===== TELEMETRY — yellow ===== */
-    #telemetry { padding: var(--sp-9) 0; }
-    .metrics-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: var(--sp-3); }
+    #telemetry {
+      padding: var(--sp-9) 0;
+    }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: var(--sp-3);
+    }
+
     .metric-card {
-      background: var(--c-black); border: 1.5px solid rgba(12,12,12,.15);
-      border-radius: var(--r-xl); padding: var(--sp-5) var(--sp-4);
+      background: var(--c-black);
+      border: 1.5px solid rgba(12, 12, 12, .15);
+      border-radius: var(--r-xl);
+      padding: var(--sp-5) var(--sp-4);
       text-align: center;
       transition: transform var(--t-med) var(--ease-out), box-shadow var(--t-med);
     }
-    .metric-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.3); }
-    .metric-val { font-family: var(--f-heading); font-size: 3.25rem; font-weight: 700; color: var(--c-yellow); letter-spacing: -2px; line-height: 1; margin-bottom: 8px; }
-    .metric-label { font-family: var(--f-mono); font-size: .75rem; color: var(--c-text-2); letter-spacing: 1px; text-transform: uppercase; }
+
+    .metric-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, .3);
+    }
+
+    .metric-val {
+      font-family: var(--f-heading);
+      font-size: 3.25rem;
+      font-weight: 700;
+      color: var(--c-yellow);
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .metric-label {
+      font-family: var(--f-mono);
+      font-size: .75rem;
+      color: var(--c-text-2);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
 
     /* ===== TERMINAL — dark ===== */
-    #terminal-section { padding: var(--sp-9) 0; }
-    .terminal {
-      background: var(--c-black2); border: 1.5px solid var(--c-border);
-      border-radius: var(--r-xl); overflow: hidden;
-      box-shadow: 0 4px 24px rgba(0,0,0,.4);
+    #terminal-section {
+      padding: var(--sp-9) 0;
     }
-    .terminal__bar { background: var(--c-black3); border-bottom: 1px solid var(--c-border); padding: 12px 16px; display: flex; align-items: center; gap: 12px; }
-    .terminal__dots { display: flex; gap: 6px; }
-    .terminal__dot { width: 11px; height: 11px; border-radius: var(--r-full); }
-    .terminal__dot--red    { background: #FF5F57; }
-    .terminal__dot--yellow { background: #FEBC2E; }
-    .terminal__dot--green  { background: #28C840; }
-    .terminal__title { font-family: var(--f-mono); font-size: .725rem; color: var(--c-text-3); flex: 1; text-align: center; }
-    .terminal__body { padding: var(--sp-4); font-family: var(--f-mono); font-size: .8125rem; line-height: 1.75; min-height: 300px; max-height: 420px; overflow-y: auto; }
-    .terminal__body::-webkit-scrollbar { width: 3px; }
-    .terminal__body::-webkit-scrollbar-thumb { background: var(--c-border2); }
-    .t-line { margin-bottom: 2px; }
-    .t-prompt { color: var(--c-yellow); }
-    .t-cmd    { color: var(--c-text-1); }
-    .t-out    { color: var(--c-text-2); padding-left: 12px; }
-    .t-ok     { color: #22C55E; }
-    .t-warn   { color: #F59E0B; }
-    .t-cursor { display: inline-block; width: 8px; height: 14px; background: var(--c-yellow); vertical-align: text-bottom; animation: blink 1s step-end infinite; }
-    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
-    .terminal__actions { padding: 12px 16px; border-top: 1px solid var(--c-border); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-    .t-label { font-family: var(--f-mono); font-size: .7rem; color: var(--c-text-3); margin-right: 4px; }
-    .t-btn { font-family: var(--f-mono); font-size: .75rem; padding: 6px 13px; border-radius: var(--r-sm); background: var(--c-black3); border: 1px solid var(--c-border2); color: var(--c-yellow); transition: all var(--t-fast); }
-    .t-btn:hover { background: rgba(245,228,27,.1); border-color: rgba(245,228,27,.35); }
+
+    .terminal {
+      background: var(--c-black2);
+      border: 1.5px solid var(--c-border);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, .4);
+    }
+
+    .terminal__bar {
+      background: var(--c-black3);
+      border-bottom: 1px solid var(--c-border);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .terminal__dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .terminal__dot {
+      width: 11px;
+      height: 11px;
+      border-radius: var(--r-full);
+    }
+
+    .terminal__dot--red {
+      background: #FF5F57;
+    }
+
+    .terminal__dot--yellow {
+      background: #FEBC2E;
+    }
+
+    .terminal__dot--green {
+      background: #28C840;
+    }
+
+    .terminal__title {
+      font-family: var(--f-mono);
+      font-size: .725rem;
+      color: var(--c-text-3);
+      flex: 1;
+      text-align: center;
+    }
+
+    .terminal__body {
+      padding: var(--sp-4);
+      font-family: var(--f-mono);
+      font-size: .8125rem;
+      line-height: 1.75;
+      min-height: 300px;
+      max-height: 420px;
+      overflow-y: auto;
+    }
+
+    .terminal__body::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    .terminal__body::-webkit-scrollbar-thumb {
+      background: var(--c-border2);
+    }
+
+    .t-line {
+      margin-bottom: 2px;
+    }
+
+    .t-prompt {
+      color: var(--c-yellow);
+    }
+
+    .t-cmd {
+      color: var(--c-text-1);
+    }
+
+    .t-out {
+      color: var(--c-text-2);
+      padding-left: 12px;
+    }
+
+    .t-ok {
+      color: #22C55E;
+    }
+
+    .t-warn {
+      color: #F59E0B;
+    }
+
+    .t-cursor {
+      display: inline-block;
+      width: 8px;
+      height: 14px;
+      background: var(--c-yellow);
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .terminal__actions {
+      padding: 12px 16px;
+      border-top: 1px solid var(--c-border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .t-label {
+      font-family: var(--f-mono);
+      font-size: .7rem;
+      color: var(--c-text-3);
+      margin-right: 4px;
+    }
+
+    .t-btn {
+      font-family: var(--f-mono);
+      font-size: .75rem;
+      padding: 6px 13px;
+      border-radius: var(--r-sm);
+      background: var(--c-black3);
+      border: 1px solid var(--c-border2);
+      color: var(--c-yellow);
+      transition: all var(--t-fast);
+    }
+
+    .t-btn:hover {
+      background: rgba(245, 228, 27, .1);
+      border-color: rgba(245, 228, 27, .35);
+    }
 
     /* ===== TICKER ===== */
-    .ticker { background: var(--c-yellow); color: var(--c-on-yellow); height: 46px; display: flex; align-items: center; overflow: hidden; }
-    .ticker__track { display: flex; white-space: nowrap; animation: marquee 32s linear infinite; }
-    .ticker__item { font-family: var(--f-mono); font-size: .75rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; padding: 0 32px; }
-    .ticker__item::after { content: '·'; margin-left: 32px; opacity: .35; }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .ticker {
+      background: var(--c-yellow);
+      color: var(--c-on-yellow);
+      height: 46px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .ticker__track {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 32s linear infinite;
+    }
+
+    .ticker__item {
+      font-family: var(--f-mono);
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0 32px;
+    }
+
+    .ticker__item::after {
+      content: '·';
+      margin-left: 32px;
+      opacity: .35;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
 
     /* ===== FOOTER ===== */
-    footer { background: var(--c-black); border-top: 1px solid var(--c-border); padding: var(--sp-5) 0; }
-    .footer__inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--sp-3); }
-    .footer__brand { font-family: var(--f-heading); font-weight: 700; font-size: 1rem; }
-    .footer__nav { display: flex; gap: var(--sp-3); }
-    .footer__nav a { font-size: .8125rem; color: var(--c-text-3); transition: color var(--t-fast); }
-    .footer__nav a:hover { color: var(--c-text-1); }
-    .footer__copy { font-size: .8rem; color: var(--c-text-3); }
+    footer {
+      background: var(--c-black);
+      border-top: 1px solid var(--c-border);
+      padding: var(--sp-5) 0;
+    }
+
+    .footer__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--sp-3);
+    }
+
+    .footer__brand {
+      font-family: var(--f-heading);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .footer__nav {
+      display: flex;
+      gap: var(--sp-3);
+    }
+
+    .footer__nav a {
+      font-size: .8125rem;
+      color: var(--c-text-3);
+      transition: color var(--t-fast);
+    }
+
+    .footer__nav a:hover {
+      color: var(--c-text-1);
+    }
+
+    .footer__copy {
+      font-size: .8rem;
+      color: var(--c-text-3);
+    }
 
     /* ===== SCROLL REVEAL ===== */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s var(--ease-out), transform .65s var(--ease-out); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-stagger > * { opacity: 0; transform: translateY(20px); transition: opacity .5s var(--ease-out), transform .5s var(--ease-out); }
-    .reveal-stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:0ms; }
-    .reveal-stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:80ms; }
-    .reveal-stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:160ms; }
-    .reveal-stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:240ms; }
-    .reveal-stagger.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay:320ms; }
-    .reveal-stagger.visible > *:nth-child(6) { opacity:1; transform:none; transition-delay:400ms; }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .65s var(--ease-out), transform .65s var(--ease-out);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-stagger>* {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .5s var(--ease-out), transform .5s var(--ease-out);
+    }
+
+    .reveal-stagger.visible>*:nth-child(1) {
+      opacity: 1;
+      transform: none;
+      transition-delay: 0ms;
+    }
+
+    .reveal-stagger.visible>*:nth-child(2) {
+      opacity: 1;
+      transform: none;
+      transition-delay: 80ms;
+    }
+
+    .reveal-stagger.visible>*:nth-child(3) {
+      opacity: 1;
+      transform: none;
+      transition-delay: 160ms;
+    }
+
+    .reveal-stagger.visible>*:nth-child(4) {
+      opacity: 1;
+      transform: none;
+      transition-delay: 240ms;
+    }
+
+    .reveal-stagger.visible>*:nth-child(5) {
+      opacity: 1;
+      transform: none;
+      transition-delay: 320ms;
+    }
+
+    .reveal-stagger.visible>*:nth-child(6) {
+      opacity: 1;
+      transform: none;
+      transition-delay: 400ms;
+    }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
-      :root { --sp-9: 80px; }
-      .hud-nav__pills { display: none; }
-      .directives-grid, .metrics-row { grid-template-columns: 1fr; }
-      .skills-grid { grid-template-columns: 1fr; }
-      .footer__inner { flex-direction: column; text-align: center; }
+      :root {
+        --sp-9: 80px;
+      }
+
+      .hud-nav__pills {
+        display: none;
+      }
+
+      .directives-grid,
+      .metrics-row {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer__inner {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<!-- HUD NAV -->
-<header class="hud-nav" role="banner">
-  <div class="hud-nav__inner">
-    <div class="hud-nav__left">
-      <a href="index.html" class="back-btn" id="btn-back">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Back to Home
-      </a>
-      <div class="status-badge">
-        <span class="status-badge__dot" aria-hidden="true"></span>
-        <span id="sys-status">Neural Diagnostic: OK</span>
-      </div>
-    </div>
-    <nav class="hud-nav__pills" aria-label="Dossier navigation">
-      <a href="#directives" class="hud-pill" id="pill-directives">01. Directives</a>
-      <a href="#arsenal"    class="hud-pill" id="pill-arsenal">02. Arsenal</a>
-      <a href="#telemetry"  class="hud-pill" id="pill-telemetry">03. Telemetry</a>
-      <a href="#terminal-section" class="hud-pill" id="pill-terminal">04. Terminal</a>
-    </nav>
-    <span class="status-badge__time" id="hud-clock" aria-live="polite"></span>
-  </div>
-</header>
-
-<!-- HERO DOSSIER -->
-<section class="dossier-hero" aria-labelledby="dossier-title">
-  <div class="container dossier-hero__inner">
-    <div class="reveal">
-      <div class="dossier-hero__tag">
-        <span aria-hidden="true">◈</span>
-        Neural Specification &amp; Recon Data
-      </div>
-      <h1 class="dossier-hero__title" id="dossier-title">
-        Web &amp; <span class="hl">Gen AI</span><br/>
-        <span class="ol">Dossier</span>
-      </h1>
-      <p class="dossier-hero__lead">
-        Engineered for full-stack precision and generative intelligence. Bridging modern web
-        architectures (Next.js, React, TypeScript) with state-of-the-art Generative AI systems,
-        autonomous agent workflows, RAG pipelines, and vector databases.
-      </p>
-    </div>
-    <div class="dossier-hero__meta reveal reveal-stagger">
-      <div class="meta-item">
-        <span class="meta-label">Primary Role</span>
-        <span class="meta-val">Full-Stack &amp; Gen AI Engineer</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Core Stack</span>
-        <span class="meta-val">Next.js · Python · LLMs</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">AI Specialization</span>
-        <span class="meta-val">Multi-Agent &amp; RAG Systems</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Operational Status</span>
-        <span class="meta-val">Ready for Deployment</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DIRECTIVES — Yellow -->
-<section id="directives" class="section section--yellow" aria-labelledby="directives-heading">
-  <div class="container">
-    <div class="reveal">
-      <span class="section-label">01 — Core Directives</span>
-      <h2 class="section-title" id="directives-heading">Engineering Philosophy</h2>
-      <p class="section-subtitle">Three core pillars that define how I approach every project — from initial architecture to production deployment.</p>
-    </div>
-    <div class="directives-grid" style="margin-top: var(--sp-5)">
-      <article class="directive-card reveal">
-        <span class="directive-card__code">Directive 01 // Web Architecture</span>
-        <h3 class="directive-card__title">Full-Stack Excellence</h3>
-        <p class="directive-card__text">
-          Architecting reactive, scalable web applications with React, Next.js (App Router), TypeScript,
-          and Node.js. Delivering lightning-fast server-side rendering, smooth client interactions,
-          and clean modular codebases that scale effortlessly.
-        </p>
-        <div class="directive-card__highlight">
-          <span aria-hidden="true">·</span> Next.js · SSR/SSG · TypeScript Purity
+  <!-- HUD NAV -->
+  <header class="hud-nav" role="banner">
+    <div class="hud-nav__inner">
+      <div class="hud-nav__left">
+        <a href="index.html" class="back-btn" id="btn-back">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+          Back to Home
+        </a>
+        <div class="status-badge">
+          <span class="status-badge__dot" aria-hidden="true"></span>
+          <span id="sys-status">Neural Diagnostic: OK</span>
         </div>
-      </article>
-      <article class="directive-card reveal">
-        <span class="directive-card__code">Directive 02 // Generative AI</span>
-        <h3 class="directive-card__title">Autonomous Agent Systems</h3>
-        <p class="directive-card__text">
-          Designing intelligent agentic workflows, multi-agent collaboration (LangChain, CrewAI, AutoGen),
-          and robust Retrieval-Augmented Generation (RAG) pipelines connected to real-time
-          vector search indexes.
-        </p>
-        <div class="directive-card__highlight">
-          <span aria-hidden="true">·</span> LLM Orchestration · Vector Search · Agents
-        </div>
-      </article>
-      <article class="directive-card reveal">
-        <span class="directive-card__code">Directive 03 // Performance &amp; DX</span>
-        <h3 class="directive-card__title">Streaming &amp; Zero Latency</h3>
-        <p class="directive-card__text">
-          Integrating real-time LLM token streaming, WebSocket pipelines, resilient async APIs
-          with FastAPI/Python, and containerized cloud deployments with continuous integration
-          pipelines for zero-downtime releases.
-        </p>
-        <div class="directive-card__highlight">
-          <span aria-hidden="true">·</span> Token Streaming · FastAPI · Docker/Cloud
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ARSENAL — Dark -->
-<section id="arsenal" class="section section--dark" aria-labelledby="arsenal-heading">
-  <div class="container">
-    <div class="arsenal-header reveal">
-      <div>
-        <span class="section-label">02 — Technical Arsenal</span>
-        <h2 class="section-title" id="arsenal-heading">AI &amp; Web Skills Matrix</h2>
       </div>
-      <div class="arsenal-tabs" role="tablist" aria-label="Skill categories">
-        <button class="arsenal-tab active" data-filter="all"     role="tab" aria-selected="true"  id="atab-all">All Modules</button>
-        <button class="arsenal-tab"        data-filter="genai"   role="tab" aria-selected="false" id="atab-genai">Gen AI</button>
-        <button class="arsenal-tab"        data-filter="web"     role="tab" aria-selected="false" id="atab-web">Web Dev</button>
-        <button class="arsenal-tab"        data-filter="backend" role="tab" aria-selected="false" id="atab-backend">Backend</button>
-      </div>
-    </div>
-    <div class="skills-grid reveal reveal-stagger" id="arsenal-grid">
-      <div class="skill-card" data-cat="genai">
-        <div class="skill-card__top"><div class="skill-card__icon">🤖</div><span class="skill-card__pct">96%</span></div>
-        <div class="skill-card__name">LLM Orchestration &amp; Agents</div>
-        <div class="skill-bar"><div class="skill-bar__fill" data-width="96"></div></div>
-        <span class="skill-card__sub">LangChain · LlamaIndex · CrewAI · Tool Calling</span>
-      </div>
-      <div class="skill-card" data-cat="genai">
-        <div class="skill-card__top"><div class="skill-card__icon">🔍</div><span class="skill-card__pct">94%</span></div>
-        <div class="skill-card__name">RAG &amp; Vector Databases</div>
-        <div class="skill-bar"><div class="skill-bar__fill" data-width="94"></div></div>
-        <span class="skill-card__sub">Pinecone · ChromaDB · Hybrid Search · Re-Ranking</span>
-      </div>
-      <div class="skill-card" data-cat="genai">
-        <div class="skill-card__top"><div class="skill-card__icon">⚡</div><span class="skill-card__pct">98%</span></div>
-        <div class="skill-card__name">Model APIs &amp; Prompt Engineering</div>
-        <div class="skill-bar"><div class="skill-bar__fill" data-width="98"></div></div>
-        <span class="skill-card__sub">GPT-4o · Gemini 2.0 · Claude 3.5 · Structured Output</span>
-      </div>
-      <div class="skill-card" data-cat="genai">
-        <div class="skill-card__top"><div class="skill-card__icon">🧠</div><span class="skill-card__pct">90%</span></div>
-        <div class="skill-card__name">Embeddings &amp; Fine-Tuning</div>
-        <div class="skill-bar"><div class="skill-bar__fill" data-width="90"></div></div>
-        <span class="skill-card__sub">Hugging Face · LoRA/QLoRA · Semantic Chunking</span>
-      </div>
-      <div class="skill-card" data-cat="web">
-        <div class="skill-card__top"><div class="skill-card__icon">▲</div><span class="skill-card__pct">97%</span></div>
-        <div class="skill-card__name">React &amp; Next.js</div>
-        <div class="skill-bar"><div class="skill-bar__fill" data-width="97"></div></div>
-        <span class="skill-card__sub">App Router · Server Components · Streaming UI</span>
-      </div>
-      <div class="skill-card" data-cat="web">
-        <div class="skill-card__top"><div class="skill-card__icon">📘</div><span class="skill-card__pct">98%</span></div>
-        <div class="skill-card__name">TypeScript / Modern JS</div>
-        <div class="skill-bar"><div class="skill-bar__fill" data-width="98"></div></div>
-        <span class="skill-card__sub">Strict Typing · Generics · Async Pipelines</span>
-      </div>
-      <div class="skill-card" data-cat="web">
-        <div class="skill-card__top"><div class="skill-card__icon">🎨</div><span class="skill-card__pct">96%</span></div>
-        <div class="skill-card__name">Modern CSS &amp; UI Design</div>
-        <div class="skill-bar"><div class="skill-bar__fill" data-width="96"></div></div>
-        <span class="skill-card__sub">Tailwind · CSS Grid · Animations · A11y</span>
-      </div>
-      <div class="skill-card" data-cat="web">
-        <div class="skill-card__top"><div class="skill-card__icon">🌐</div><span class="skill-card__pct">99%</span></div>
-        <div class="skill-card__name">HTML5 &amp; Web Standards</div>
-        <div class="skill-bar"><div class="skill-bar__fill" data-width="99"></div></div>
-        <span class="skill-card__sub">Semantic HTML · WebSockets · SEO · A11y</span>
-      </div>
-      <div class="skill-card" data-cat="backend">
-        <div class="skill-card__top"><div class="skill-card__icon">🐍</div><span class="skill-card__pct">93%</span></div>
-        <div class="skill-card__name">Python &amp; FastAPI</div>
-        <div class="skill-bar"><div class="skill-bar__fill" data-width="93"></div></div>
-        <span class="skill-card__sub">Async Endpoints · Pydantic · PyTorch · Streaming</span>
-      </div>
-      <div class="skill-card" data-cat="backend">
-        <div class="skill-card__top"><div class="skill-card__icon">🗄️</div><span class="skill-card__pct">89%</span></div>
-        <div class="skill-card__name">PostgreSQL &amp; pgvector</div>
-        <div class="skill-bar"><div class="skill-bar__fill" data-width="89"></div></div>
-        <span class="skill-card__sub">Vector Indexing (HNSW) · SQL · Relational Schema</span>
-      </div>
-      <div class="skill-card" data-cat="backend">
-        <div class="skill-card__top"><div class="skill-card__icon">🐳</div><span class="skill-card__pct">88%</span></div>
-        <div class="skill-card__name">Docker &amp; Cloud Deployment</div>
-        <div class="skill-bar"><div class="skill-bar__fill" data-width="88"></div></div>
-        <span class="skill-card__sub">Vercel · AWS · CI/CD · Containerization</span>
-      </div>
-      <div class="skill-card" data-cat="backend">
-        <div class="skill-card__top"><div class="skill-card__icon">🔀</div><span class="skill-card__pct">91%</span></div>
-        <div class="skill-card__name">Node.js &amp; Express</div>
-        <div class="skill-bar"><div class="skill-bar__fill" data-width="91"></div></div>
-        <span class="skill-card__sub">REST &amp; GraphQL · Auth · Microservices</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TELEMETRY — Yellow -->
-<section id="telemetry" class="section section--yellow" aria-labelledby="telemetry-heading">
-  <div class="container">
-    <div class="reveal">
-      <span class="section-label">03 — Engineering Telemetry</span>
-      <h2 class="section-title" id="telemetry-heading">System Metrics</h2>
-      <p class="section-subtitle">Operational statistics from production deployments and engineering projects.</p>
-    </div>
-    <div class="metrics-row" style="margin-top: var(--sp-5)">
-      <div class="metric-card reveal">
-        <div class="metric-val">4+</div>
-        <div class="metric-label">Years Operational</div>
-      </div>
-      <div class="metric-card reveal">
-        <div class="metric-val">10M+</div>
-        <div class="metric-label">LLM Tokens Streamed</div>
-      </div>
-      <div class="metric-card reveal">
-        <div class="metric-val">50+</div>
-        <div class="metric-label">Web &amp; AI Apps Shipped</div>
-      </div>
-      <div class="metric-card reveal">
-        <div class="metric-val">99.9%</div>
-        <div class="metric-label">System Reliability</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TERMINAL — Dark -->
-<section id="terminal-section" class="section section--dark2" aria-labelledby="terminal-heading">
-  <div class="container">
-    <div class="reveal" style="margin-bottom: var(--sp-5)">
-      <span class="section-label">04 — Diagnostics Terminal</span>
-      <h2 class="section-title" id="terminal-heading">Interactive Console</h2>
-      <p class="section-subtitle">Run commands to query my technical profile, AI stack details, agent simulation, and system benchmarks.</p>
-    </div>
-    <div class="terminal reveal">
-      <div class="terminal__bar">
-        <div class="terminal__dots" aria-hidden="true">
-          <span class="terminal__dot terminal__dot--red"></span>
-          <span class="terminal__dot terminal__dot--yellow"></span>
-          <span class="terminal__dot terminal__dot--green"></span>
-        </div>
-        <span class="terminal__title">GEN_AI // CONSOLE_SESSION_DOSSIER</span>
-        <span style="font-size:.65rem;color:var(--c-green);font-family:var(--f-mono)">LLM_STREAM: READY</span>
-      </div>
-      <div class="terminal__body" id="term-body" aria-live="polite">
-        <div class="t-line"><span class="t-prompt">❯</span><span class="t-cmd"> init --neural-mesh --verbose</span></div>
-        <div class="t-line t-out"><span class="t-ok">[+]</span> Neural context initialized: Gemini 2.0 / GPT-4o / Claude 3.5</div>
-        <div class="t-line t-out"><span class="t-ok">[+]</span> Vector DB connectivity: ACTIVE (Pinecone / ChromaDB)</div>
-        <div class="t-line t-out"><span class="t-ok">[+]</span> Full-Stack runtime: Next.js 15 · TypeScript · Python FastAPI</div>
-        <div class="t-line t-out"><span class="t-ok">[+]</span> System status: Ready to architect modern web applications and autonomous AI agents.</div>
-        <div class="t-line t-out"><span class="t-warn">[~]</span> Select a command below to begin diagnostic...</div>
-        <div class="t-line" id="d-cursor-line"><span class="t-prompt">❯ </span><span class="t-cursor"></span></div>
-      </div>
-      <div class="terminal__actions">
-        <span class="t-label">Commands:</span>
-        <button class="t-btn" onclick="dCmd('bio')"          id="dcmd-bio">cat bio.log</button>
-        <button class="t-btn" onclick="dCmd('stack')"        id="dcmd-stack">scan --ai-stack</button>
-        <button class="t-btn" onclick="dCmd('agent')"        id="dcmd-agent">agent --run</button>
-        <button class="t-btn" onclick="dCmd('ping')"         id="dcmd-ping">ping --latency</button>
-        <button class="t-btn" onclick="dCmd('benchmarks')"  id="dcmd-bench">benchmarks</button>
-        <button class="t-btn" onclick="dCmd('contact')"     id="dcmd-contact">contact --info</button>
-        <button class="t-btn" onclick="dCmd('clear')"       id="dcmd-clear">clear</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TICKER -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker__track">
-    <span class="ticker__item">Web &amp; Gen AI Developer</span>
-    <span class="ticker__item">Autonomous LLM Agents</span>
-    <span class="ticker__item">Next.js Architecture</span>
-    <span class="ticker__item">RAG &amp; Vector Pipelines</span>
-    <span class="ticker__item">Zero Latency Streaming</span>
-    <span class="ticker__item">Web &amp; Gen AI Developer</span>
-    <span class="ticker__item">Autonomous LLM Agents</span>
-    <span class="ticker__item">Next.js Architecture</span>
-    <span class="ticker__item">RAG &amp; Vector Pipelines</span>
-    <span class="ticker__item">Zero Latency Streaming</span>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer__inner">
-      <div class="footer__brand">Dev<span style="color:var(--c-yellow)">&amp;</span>AI</div>
-      <nav class="footer__nav" aria-label="Footer navigation">
-        <a href="index.html">Home</a>
-        <a href="#directives">Directives</a>
-        <a href="#arsenal">Arsenal</a>
-        <a href="#telemetry">Telemetry</a>
+      <nav class="hud-nav__pills" aria-label="Dossier navigation">
+        <a href="#directives" class="hud-pill" id="pill-directives">01. Directives</a>
+        <a href="#arsenal" class="hud-pill" id="pill-arsenal">02. Arsenal</a>
+        <a href="#telemetry" class="hud-pill" id="pill-telemetry">03. Telemetry</a>
+        <a href="#terminal-section" class="hud-pill" id="pill-terminal">04. Terminal</a>
       </nav>
-      <p class="footer__copy">&copy; 2026 &mdash; Full Dossier</p>
+      <span class="status-badge__time" id="hud-clock" aria-live="polite"></span>
+    </div>
+  </header>
+
+  <!-- HERO DOSSIER -->
+  <section class="dossier-hero" aria-labelledby="dossier-title">
+    <div class="container dossier-hero__inner">
+      <div class="reveal">
+        <div class="dossier-hero__tag">
+          <span aria-hidden="true">◈</span>
+          Neural Specification &amp; Recon Data
+        </div>
+        <h1 class="dossier-hero__title" id="dossier-title">
+          Web &amp; <span class="hl">Gen AI</span><br />
+          <span class="ol">Dossier</span>
+        </h1>
+        <p class="dossier-hero__lead">
+          Engineered for full-stack precision and generative intelligence. Bridging modern web
+          architectures (Next.js, React, TypeScript) with state-of-the-art Generative AI systems,
+          autonomous agent workflows, RAG pipelines, and vector databases.
+        </p>
+      </div>
+      <div class="dossier-hero__meta reveal reveal-stagger">
+        <div class="meta-item">
+          <span class="meta-label">Primary Role</span>
+          <span class="meta-val">Full-Stack &amp; Gen AI Engineer</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Core Stack</span>
+          <span class="meta-val">Next.js · Python · LLMs</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">AI Specialization</span>
+          <span class="meta-val">Multi-Agent &amp; RAG Systems</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Operational Status</span>
+          <span class="meta-val">Ready for Deployment</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIRECTIVES — Yellow -->
+  <section id="directives" class="section section--yellow" aria-labelledby="directives-heading">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">01 — Core Directives</span>
+        <h2 class="section-title" id="directives-heading">Engineering Philosophy</h2>
+        <p class="section-subtitle">Three core pillars that define how I approach every project — from initial
+          architecture to production deployment.</p>
+      </div>
+      <div class="directives-grid" style="margin-top: var(--sp-5)">
+        <article class="directive-card reveal">
+          <span class="directive-card__code">Directive 01 // Web Architecture</span>
+          <h3 class="directive-card__title">Full-Stack Excellence</h3>
+          <p class="directive-card__text">
+            Architecting reactive, scalable web applications with React, Next.js (App Router), TypeScript,
+            and Node.js. Delivering lightning-fast server-side rendering, smooth client interactions,
+            and clean modular codebases that scale effortlessly.
+          </p>
+          <div class="directive-card__highlight">
+            <span aria-hidden="true">·</span> Next.js · SSR/SSG · TypeScript Purity
+          </div>
+        </article>
+        <article class="directive-card reveal">
+          <span class="directive-card__code">Directive 02 // Generative AI</span>
+          <h3 class="directive-card__title">Autonomous Agent Systems</h3>
+          <p class="directive-card__text">
+            Designing intelligent agentic workflows, multi-agent collaboration (LangChain, CrewAI, AutoGen),
+            and robust Retrieval-Augmented Generation (RAG) pipelines connected to real-time
+            vector search indexes.
+          </p>
+          <div class="directive-card__highlight">
+            <span aria-hidden="true">·</span> LLM Orchestration · Vector Search · Agents
+          </div>
+        </article>
+        <article class="directive-card reveal">
+          <span class="directive-card__code">Directive 03 // Performance &amp; DX</span>
+          <h3 class="directive-card__title">Streaming &amp; Zero Latency</h3>
+          <p class="directive-card__text">
+            Integrating real-time LLM token streaming, WebSocket pipelines, resilient async APIs
+            with FastAPI/Python, and containerized cloud deployments with continuous integration
+            pipelines for zero-downtime releases.
+          </p>
+          <div class="directive-card__highlight">
+            <span aria-hidden="true">·</span> Token Streaming · FastAPI · Docker/Cloud
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARSENAL — Dark -->
+  <section id="arsenal" class="section section--dark" aria-labelledby="arsenal-heading">
+    <div class="container">
+      <div class="arsenal-header reveal">
+        <div>
+          <span class="section-label">02 — Technical Arsenal</span>
+          <h2 class="section-title" id="arsenal-heading">AI &amp; Web Skills Matrix</h2>
+        </div>
+        <div class="arsenal-tabs" role="tablist" aria-label="Skill categories">
+          <button class="arsenal-tab active" data-filter="all" role="tab" aria-selected="true" id="atab-all">All
+            Modules</button>
+          <button class="arsenal-tab" data-filter="genai" role="tab" aria-selected="false" id="atab-genai">Gen
+            AI</button>
+          <button class="arsenal-tab" data-filter="web" role="tab" aria-selected="false" id="atab-web">Web Dev</button>
+          <button class="arsenal-tab" data-filter="backend" role="tab" aria-selected="false"
+            id="atab-backend">Backend</button>
+        </div>
+      </div>
+      <div class="skills-grid reveal reveal-stagger" id="arsenal-grid">
+        <div class="skill-card" data-cat="genai">
+          <div class="skill-card__top">
+            <div class="skill-card__icon">🤖</div><span class="skill-card__pct">96%</span>
+          </div>
+          <div class="skill-card__name">LLM Orchestration &amp; Agents</div>
+          <div class="skill-bar">
+            <div class="skill-bar__fill" data-width="96"></div>
+          </div>
+          <span class="skill-card__sub">LangChain · LlamaIndex · CrewAI · Tool Calling</span>
+        </div>
+        <div class="skill-card" data-cat="genai">
+          <div class="skill-card__top">
+            <div class="skill-card__icon">🔍</div><span class="skill-card__pct">94%</span>
+          </div>
+          <div class="skill-card__name">RAG &amp; Vector Databases</div>
+          <div class="skill-bar">
+            <div class="skill-bar__fill" data-width="94"></div>
+          </div>
+          <span class="skill-card__sub">Pinecone · ChromaDB · Hybrid Search · Re-Ranking</span>
+        </div>
+        <div class="skill-card" data-cat="genai">
+          <div class="skill-card__top">
+            <div class="skill-card__icon">⚡</div><span class="skill-card__pct">98%</span>
+          </div>
+          <div class="skill-card__name">Model APIs &amp; Prompt Engineering</div>
+          <div class="skill-bar">
+            <div class="skill-bar__fill" data-width="98"></div>
+          </div>
+          <span class="skill-card__sub">GPT-4o · Gemini 2.0 · Claude 3.5 · Structured Output</span>
+        </div>
+        <div class="skill-card" data-cat="genai">
+          <div class="skill-card__top">
+            <div class="skill-card__icon">🧠</div><span class="skill-card__pct">90%</span>
+          </div>
+          <div class="skill-card__name">Embeddings &amp; Fine-Tuning</div>
+          <div class="skill-bar">
+            <div class="skill-bar__fill" data-width="90"></div>
+          </div>
+          <span class="skill-card__sub">Hugging Face · LoRA/QLoRA · Semantic Chunking</span>
+        </div>
+        <div class="skill-card" data-cat="web">
+          <div class="skill-card__top">
+            <div class="skill-card__icon">▲</div><span class="skill-card__pct">97%</span>
+          </div>
+          <div class="skill-card__name">React &amp; Next.js</div>
+          <div class="skill-bar">
+            <div class="skill-bar__fill" data-width="97"></div>
+          </div>
+          <span class="skill-card__sub">App Router · Server Components · Streaming UI</span>
+        </div>
+        <div class="skill-card" data-cat="web">
+          <div class="skill-card__top">
+            <div class="skill-card__icon">📘</div><span class="skill-card__pct">98%</span>
+          </div>
+          <div class="skill-card__name">TypeScript / Modern JS</div>
+          <div class="skill-bar">
+            <div class="skill-bar__fill" data-width="98"></div>
+          </div>
+          <span class="skill-card__sub">Strict Typing · Generics · Async Pipelines</span>
+        </div>
+        <div class="skill-card" data-cat="web">
+          <div class="skill-card__top">
+            <div class="skill-card__icon">🎨</div><span class="skill-card__pct">96%</span>
+          </div>
+          <div class="skill-card__name">Modern CSS &amp; UI Design</div>
+          <div class="skill-bar">
+            <div class="skill-bar__fill" data-width="96"></div>
+          </div>
+          <span class="skill-card__sub">Tailwind · CSS Grid · Animations · A11y</span>
+        </div>
+        <div class="skill-card" data-cat="web">
+          <div class="skill-card__top">
+            <div class="skill-card__icon">🌐</div><span class="skill-card__pct">99%</span>
+          </div>
+          <div class="skill-card__name">HTML5 &amp; Web Standards</div>
+          <div class="skill-bar">
+            <div class="skill-bar__fill" data-width="99"></div>
+          </div>
+          <span class="skill-card__sub">Semantic HTML · WebSockets · SEO · A11y</span>
+        </div>
+        <div class="skill-card" data-cat="backend">
+          <div class="skill-card__top">
+            <div class="skill-card__icon">🐍</div><span class="skill-card__pct">93%</span>
+          </div>
+          <div class="skill-card__name">Python &amp; FastAPI</div>
+          <div class="skill-bar">
+            <div class="skill-bar__fill" data-width="93"></div>
+          </div>
+          <span class="skill-card__sub">Async Endpoints · Pydantic · PyTorch · Streaming</span>
+        </div>
+        <div class="skill-card" data-cat="backend">
+          <div class="skill-card__top">
+            <div class="skill-card__icon">🗄️</div><span class="skill-card__pct">89%</span>
+          </div>
+          <div class="skill-card__name">PostgreSQL &amp; pgvector</div>
+          <div class="skill-bar">
+            <div class="skill-bar__fill" data-width="89"></div>
+          </div>
+          <span class="skill-card__sub">Vector Indexing (HNSW) · SQL · Relational Schema</span>
+        </div>
+        <div class="skill-card" data-cat="backend">
+          <div class="skill-card__top">
+            <div class="skill-card__icon">🐳</div><span class="skill-card__pct">88%</span>
+          </div>
+          <div class="skill-card__name">Docker &amp; Cloud Deployment</div>
+          <div class="skill-bar">
+            <div class="skill-bar__fill" data-width="88"></div>
+          </div>
+          <span class="skill-card__sub">Vercel · AWS · CI/CD · Containerization</span>
+        </div>
+        <div class="skill-card" data-cat="backend">
+          <div class="skill-card__top">
+            <div class="skill-card__icon">🔀</div><span class="skill-card__pct">91%</span>
+          </div>
+          <div class="skill-card__name">Node.js &amp; Express</div>
+          <div class="skill-bar">
+            <div class="skill-bar__fill" data-width="91"></div>
+          </div>
+          <span class="skill-card__sub">REST &amp; GraphQL · Auth · Microservices</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TELEMETRY — Yellow -->
+  <section id="telemetry" class="section section--yellow" aria-labelledby="telemetry-heading">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">03 — Engineering Telemetry</span>
+        <h2 class="section-title" id="telemetry-heading">System Metrics</h2>
+        <p class="section-subtitle">Operational statistics from production deployments and engineering projects.</p>
+      </div>
+      <div class="metrics-row" style="margin-top: var(--sp-5)">
+        <div class="metric-card reveal">
+          <div class="metric-val">4+</div>
+          <div class="metric-label">Years Operational</div>
+        </div>
+        <div class="metric-card reveal">
+          <div class="metric-val">10M+</div>
+          <div class="metric-label">LLM Tokens Streamed</div>
+        </div>
+        <div class="metric-card reveal">
+          <div class="metric-val">50+</div>
+          <div class="metric-label">Web &amp; AI Apps Shipped</div>
+        </div>
+        <div class="metric-card reveal">
+          <div class="metric-val">99.9%</div>
+          <div class="metric-label">System Reliability</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TERMINAL — Dark -->
+  <section id="terminal-section" class="section section--dark2" aria-labelledby="terminal-heading">
+    <div class="container">
+      <div class="reveal" style="margin-bottom: var(--sp-5)">
+        <span class="section-label">04 — Diagnostics Terminal</span>
+        <h2 class="section-title" id="terminal-heading">Interactive Console</h2>
+        <p class="section-subtitle">Run commands to query my technical profile, AI stack details, agent simulation, and
+          system benchmarks.</p>
+      </div>
+      <div class="terminal reveal">
+        <div class="terminal__bar">
+          <div class="terminal__dots" aria-hidden="true">
+            <span class="terminal__dot terminal__dot--red"></span>
+            <span class="terminal__dot terminal__dot--yellow"></span>
+            <span class="terminal__dot terminal__dot--green"></span>
+          </div>
+          <span class="terminal__title">GEN_AI // CONSOLE_SESSION_DOSSIER</span>
+          <span style="font-size:.65rem;color:var(--c-green);font-family:var(--f-mono)">LLM_STREAM: READY</span>
+        </div>
+        <div class="terminal__body" id="term-body" aria-live="polite">
+          <div class="t-line"><span class="t-prompt">❯</span><span class="t-cmd"> init --neural-mesh --verbose</span>
+          </div>
+          <div class="t-line t-out"><span class="t-ok">[+]</span> Neural context initialized: Gemini 2.0 / GPT-4o /
+            Claude 3.5</div>
+          <div class="t-line t-out"><span class="t-ok">[+]</span> Vector DB connectivity: ACTIVE (Pinecone / ChromaDB)
+          </div>
+          <div class="t-line t-out"><span class="t-ok">[+]</span> Full-Stack runtime: Next.js 15 · TypeScript · Python
+            FastAPI</div>
+          <div class="t-line t-out"><span class="t-ok">[+]</span> System status: Ready to architect modern web
+            applications and autonomous AI agents.</div>
+          <div class="t-line t-out"><span class="t-warn">[~]</span> Select a command below to begin diagnostic...</div>
+          <div class="t-line" id="d-cursor-line"><span class="t-prompt">❯ </span><span class="t-cursor"></span></div>
+        </div>
+        <div class="terminal__actions">
+          <span class="t-label">Commands:</span>
+          <button class="t-btn" onclick="dCmd('bio')" id="dcmd-bio">cat bio.log</button>
+          <button class="t-btn" onclick="dCmd('stack')" id="dcmd-stack">scan --ai-stack</button>
+          <button class="t-btn" onclick="dCmd('agent')" id="dcmd-agent">agent --run</button>
+          <button class="t-btn" onclick="dCmd('ping')" id="dcmd-ping">ping --latency</button>
+          <button class="t-btn" onclick="dCmd('benchmarks')" id="dcmd-bench">benchmarks</button>
+          <button class="t-btn" onclick="dCmd('contact')" id="dcmd-contact">contact --info</button>
+          <button class="t-btn" onclick="dCmd('clear')" id="dcmd-clear">clear</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span class="ticker__item">Web &amp; Gen AI Developer</span>
+      <span class="ticker__item">Autonomous LLM Agents</span>
+      <span class="ticker__item">Next.js Architecture</span>
+      <span class="ticker__item">RAG &amp; Vector Pipelines</span>
+      <span class="ticker__item">Zero Latency Streaming</span>
+      <span class="ticker__item">Web &amp; Gen AI Developer</span>
+      <span class="ticker__item">Autonomous LLM Agents</span>
+      <span class="ticker__item">Next.js Architecture</span>
+      <span class="ticker__item">RAG &amp; Vector Pipelines</span>
+      <span class="ticker__item">Zero Latency Streaming</span>
     </div>
   </div>
-</footer>
 
-<script>
-// Live diagnostic clock
-function updateClock() {
-  const now = new Date();
-  const t = now.toTimeString().split(' ')[0];
-  const el = document.getElementById('hud-clock');
-  if (el) el.textContent = t;
-  const st = document.getElementById('sys-status');
-  if (st) st.textContent = `Neural Diagnostic: OK [${t}]`;
-}
-setInterval(updateClock, 1000);
-updateClock();
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">Dev<span style="color:var(--c-yellow)">&amp;</span>AI</div>
+        <nav class="footer__nav" aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="#directives">Directives</a>
+          <a href="#arsenal">Arsenal</a>
+          <a href="#telemetry">Telemetry</a>
+        </nav>
+        <p class="footer__copy">&copy; 2026 &mdash; Full Dossier</p>
+      </div>
+    </div>
+  </footer>
 
-// Scroll reveal
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-// Skill bars
-const barObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.querySelectorAll('.skill-bar__fill').forEach(f => f.style.width = f.dataset.width+'%');
-      barObs.unobserve(e.target);
+  <script>
+    // Live diagnostic clock
+    function updateClock() {
+      const now = new Date();
+      const t = now.toTimeString().split(' ')[0];
+      const el = document.getElementById('hud-clock');
+      if (el) el.textContent = t;
+      const st = document.getElementById('sys-status');
+      if (st) st.textContent = `Neural Diagnostic: OK [${t}]`;
     }
-  });
-}, { threshold: 0.15 });
-document.querySelectorAll('#arsenal-grid').forEach(g => barObs.observe(g));
+    setInterval(updateClock, 1000);
+    updateClock();
 
-// Arsenal filter tabs
-document.querySelectorAll('.arsenal-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.arsenal-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
-    tab.classList.add('active'); tab.setAttribute('aria-selected','true');
-    const f = tab.dataset.filter;
-    document.querySelectorAll('.skill-card').forEach(c => c.classList.toggle('hidden', f!=='all' && c.dataset.cat!==f));
-  });
-});
+    // Scroll reveal
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// Terminal
-const termBody  = document.getElementById('term-body');
-const dCursorLn = document.getElementById('d-cursor-line');
-const DCMDS = {
-  bio: { cmd:'cat bio.log', lines:[
-    '<span class="t-ok">[PROFILE]</span> Full-Stack Web Developer &amp; Generative AI Engineer',
-    '<span class="t-out">→ Specializes in Next.js web apps + autonomous LLM agent systems</span>',
-    '<span class="t-out">→ 4+ years in production web &amp; AI engineering</span>',
-    '<span class="t-out">→ Bridging frontend excellence with cutting-edge AI research</span>',
-    '<span class="t-ok">[STATUS]</span> Open to full-time roles &amp; freelance AI consulting.',
-  ]},
-  stack: { cmd:'scan --ai-stack --all', lines:[
-    '<span class="t-ok">[FRONTEND]</span>  Next.js 15 · React · TypeScript · Tailwind CSS',
-    '<span class="t-ok">[GEN AI]</span>    LangChain · CrewAI · LlamaIndex · AutoGen',
-    '<span class="t-ok">[MODELS]</span>    Gemini 2.0 · GPT-4o · Claude 3.5 Sonnet · Ollama',
-    '<span class="t-ok">[VECTOR]</span>    Pinecone · ChromaDB · pgvector · Hybrid Search',
-    '<span class="t-ok">[BACKEND]</span>   Python FastAPI · Node.js · PostgreSQL · Redis',
-    '<span class="t-ok">[DEVOPS]</span>    Docker · Vercel · AWS · CI/CD Pipelines',
-    '<span class="t-warn">[OK]</span> Stack integrity: 100%. All modules production-ready.',
-  ]},
-  agent: { cmd:'agent --run "synthesize_solution" --stream', lines:[
-    '<span class="t-warn">[AGENT]</span> Spinning up multi-agent swarm...',
-    '<span class="t-out">  1. QueryAgent:   parsing intent &amp; generating embedding ✓</span>',
-    '<span class="t-out">  2. Retriever:    HNSW vector search → top-10 chunks ✓</span>',
-    '<span class="t-out">  3. Ranker:       cross-encoder re-ranking → top-3 ✓</span>',
-    '<span class="t-out">  4. Reasoner:     chain-of-thought synthesis ✓</span>',
-    '<span class="t-out">  5. Generator:    streaming structured response...</span>',
-    '<span class="t-ok">[DONE]</span> Solution complete. Latency: 342ms. Tokens: 1,247.',
-  ]},
-  ping: { cmd:'ping --latency --all-endpoints', lines:[
-    '<span class="t-out">Gemini 2.0 Flash...  128ms ✓</span>',
-    '<span class="t-out">GPT-4o...            211ms ✓</span>',
-    '<span class="t-out">Claude 3.5 Sonnet... 184ms ✓</span>',
-    '<span class="t-out">Pinecone VectorDB...  18ms ✓</span>',
-    '<span class="t-out">FastAPI Gateway...    12ms ✓</span>',
-    '<span class="t-ok">[OK]</span> All endpoints nominal. Avg throughput: ~90 tok/sec.',
-  ]},
-  benchmarks: { cmd:'run benchmarks --prod', lines:[
-    '<span class="t-ok">[BENCH]</span> Next.js App Router: Lighthouse score 98/100',
-    '<span class="t-ok">[BENCH]</span> FastAPI async throughput: 2,400 req/sec',
-    '<span class="t-ok">[BENCH]</span> RAG retrieval latency P95: 85ms',
-    '<span class="t-ok">[BENCH]</span> LLM streaming first-token latency: 280ms',
-    '<span class="t-ok">[BENCH]</span> Vector search (1M docs): 22ms median',
-    '<span class="t-warn">[ALL]</span> Benchmarks passed. Production-grade performance confirmed.',
-  ]},
-  contact: { cmd:'contact --info', lines:[
-    '<span class="t-ok">[CONTACT]</span> Email:    you@example.com',
-    '<span class="t-ok">[CONTACT]</span> GitHub:   github.com/yourusername',
-    '<span class="t-ok">[CONTACT]</span> LinkedIn: linkedin.com/in/yourname',
-    '<span class="t-out">→ Availability: Immediately available for full-time &amp; freelance</span>',
-    '<span class="t-out">→ Response time: &lt;24 hours</span>',
-  ]}
-};
-function dCmd(key) {
-  if (key==='clear') {
-    termBody.innerHTML='<div class="t-line t-out"><span class="t-ok">[✓]</span> Terminal cleared.</div>';
-    termBody.appendChild(dCursorLn); return;
-  }
-  const c = DCMDS[key]; if (!c) return;
-  dCursorLn.remove();
-  const pl = document.createElement('div');
-  pl.className='t-line';
-  pl.innerHTML=`<span class="t-prompt">❯</span> <span class="t-cmd">${c.cmd}</span>`;
-  termBody.appendChild(pl);
-  c.lines.forEach((line,i) => setTimeout(() => {
-    const el=document.createElement('div'); el.className='t-line t-out'; el.innerHTML=line;
-    termBody.appendChild(el);
-    if (i===c.lines.length-1) { termBody.appendChild(dCursorLn); termBody.scrollTop=termBody.scrollHeight; }
-  }, i*70));
-}
-</script>
+    // Skill bars
+    const barObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.skill-bar__fill').forEach(f => f.style.width = f.dataset.width + '%');
+          barObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('#arsenal-grid').forEach(g => barObs.observe(g));
+
+    // Arsenal filter tabs
+    document.querySelectorAll('.arsenal-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.arsenal-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+        tab.classList.add('active'); tab.setAttribute('aria-selected', 'true');
+        const f = tab.dataset.filter;
+        document.querySelectorAll('.skill-card').forEach(c => c.classList.toggle('hidden', f !== 'all' && c.dataset.cat !== f));
+      });
+    });
+
+    // Terminal
+    const termBody = document.getElementById('term-body');
+    const dCursorLn = document.getElementById('d-cursor-line');
+    const DCMDS = {
+      bio: {
+        cmd: 'cat bio.log', lines: [
+          '<span class="t-ok">[PROFILE]</span> Full-Stack Web Developer &amp; Generative AI Engineer',
+          '<span class="t-out">→ Specializes in Next.js web apps + autonomous LLM agent systems</span>',
+          '<span class="t-out">→ 4+ years in production web &amp; AI engineering</span>',
+          '<span class="t-out">→ Bridging frontend excellence with cutting-edge AI research</span>',
+          '<span class="t-ok">[STATUS]</span> Open to full-time roles &amp; freelance AI consulting.',
+        ]
+      },
+      stack: {
+        cmd: 'scan --ai-stack --all', lines: [
+          '<span class="t-ok">[FRONTEND]</span>  Next.js 15 · React · TypeScript · Tailwind CSS',
+          '<span class="t-ok">[GEN AI]</span>    LangChain · CrewAI · LlamaIndex · AutoGen',
+          '<span class="t-ok">[MODELS]</span>    Gemini 2.0 · GPT-4o · Claude 3.5 Sonnet · Ollama',
+          '<span class="t-ok">[VECTOR]</span>    Pinecone · ChromaDB · pgvector · Hybrid Search',
+          '<span class="t-ok">[BACKEND]</span>   Python FastAPI · Node.js · PostgreSQL · Redis',
+          '<span class="t-ok">[DEVOPS]</span>    Docker · Vercel · AWS · CI/CD Pipelines',
+          '<span class="t-warn">[OK]</span> Stack integrity: 100%. All modules production-ready.',
+        ]
+      },
+      agent: {
+        cmd: 'agent --run "synthesize_solution" --stream', lines: [
+          '<span class="t-warn">[AGENT]</span> Spinning up multi-agent swarm...',
+          '<span class="t-out">  1. QueryAgent:   parsing intent &amp; generating embedding ✓</span>',
+          '<span class="t-out">  2. Retriever:    HNSW vector search → top-10 chunks ✓</span>',
+          '<span class="t-out">  3. Ranker:       cross-encoder re-ranking → top-3 ✓</span>',
+          '<span class="t-out">  4. Reasoner:     chain-of-thought synthesis ✓</span>',
+          '<span class="t-out">  5. Generator:    streaming structured response...</span>',
+          '<span class="t-ok">[DONE]</span> Solution complete. Latency: 342ms. Tokens: 1,247.',
+        ]
+      },
+      ping: {
+        cmd: 'ping --latency --all-endpoints', lines: [
+          '<span class="t-out">Gemini 2.0 Flash...  128ms ✓</span>',
+          '<span class="t-out">GPT-4o...            211ms ✓</span>',
+          '<span class="t-out">Claude 3.5 Sonnet... 184ms ✓</span>',
+          '<span class="t-out">Pinecone VectorDB...  18ms ✓</span>',
+          '<span class="t-out">FastAPI Gateway...    12ms ✓</span>',
+          '<span class="t-ok">[OK]</span> All endpoints nominal. Avg throughput: ~90 tok/sec.',
+        ]
+      },
+      benchmarks: {
+        cmd: 'run benchmarks --prod', lines: [
+          '<span class="t-ok">[BENCH]</span> Next.js App Router: Lighthouse score 98/100',
+          '<span class="t-ok">[BENCH]</span> FastAPI async throughput: 2,400 req/sec',
+          '<span class="t-ok">[BENCH]</span> RAG retrieval latency P95: 85ms',
+          '<span class="t-ok">[BENCH]</span> LLM streaming first-token latency: 280ms',
+          '<span class="t-ok">[BENCH]</span> Vector search (1M docs): 22ms median',
+          '<span class="t-warn">[ALL]</span> Benchmarks passed. Production-grade performance confirmed.',
+        ]
+      },
+      contact: {
+        cmd: 'contact --info', lines: [
+          '<span class="t-ok">[CONTACT]</span> Email:    you@example.com',
+          '<span class="t-ok">[CONTACT]</span> GitHub:   github.com/yourusername',
+          '<span class="t-ok">[CONTACT]</span> LinkedIn: linkedin.com/in/yourname',
+          '<span class="t-out">→ Availability: Immediately available for full-time &amp; freelance</span>',
+          '<span class="t-out">→ Response time: &lt;24 hours</span>',
+        ]
+      }
+    };
+    function dCmd(key) {
+      if (key === 'clear') {
+        termBody.innerHTML = '<div class="t-line t-out"><span class="t-ok">[✓]</span> Terminal cleared.</div>';
+        termBody.appendChild(dCursorLn); return;
+      }
+      const c = DCMDS[key]; if (!c) return;
+      dCursorLn.remove();
+      const pl = document.createElement('div');
+      pl.className = 't-line';
+      pl.innerHTML = `<span class="t-prompt">❯</span> <span class="t-cmd">${c.cmd}</span>`;
+      termBody.appendChild(pl);
+      c.lines.forEach((line, i) => setTimeout(() => {
+        const el = document.createElement('div'); el.className = 't-line t-out'; el.innerHTML = line;
+        termBody.appendChild(el);
+        if (i === c.lines.length - 1) { termBody.appendChild(dCursorLn); termBody.scrollTop = termBody.scrollHeight; }
+      }, i * 70));
+    }
+  </script>
 </body>
-</html>
+
+</html
